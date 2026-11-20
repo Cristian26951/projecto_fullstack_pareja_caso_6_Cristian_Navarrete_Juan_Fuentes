@@ -1,74 +1,106 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MotorTech - Gestión de Taller Automotriz</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <nav class="navbar">
-        <div class="nav-brand">
-            <i class="fa-solid fa-wrench"></i>
-            <span>Taller Automotriz <strong>MotorTech</strong> | ADSO 3409609</span>
-        </div>
+      <div class="nav-brand">
+        <i class="fa-solid fa-wrench"></i>
+        <span>Taller Automotriz <strong>MotorTech</strong> | ADSO 3409609</span>
+      </div>
 
-        <ul class="nav-links">
-            <li><button class="nav-btn active" data-filter="todos">Taller</button></li>
-            <li><button class="nav-btn" data-filter="reparacion">En Reparación</button></li>
-            <li><button class="nav-btn" data-filter="listos">Listos para Entrega</button></li>
-            <li><button class="nav-btn btn-highlight" id="btn-focus-form">+ Nueva Orden</button></li>
-            <li>
-                <span class="badge-counter" id="contador-ordenes">0 Órdenes</span>
-            </li>
-        </ul>
+      <ul class="nav-links">
+        <li>
+          <button class="nav-btn active" data-filter="todos">Taller</button>
+        </li>
+        <li>
+          <button class="nav-btn" data-filter="reparacion">
+            En Reparación
+          </button>
+        </li>
+        <li>
+          <button class="nav-btn" data-filter="listos">
+            Listos para Entrega
+          </button>
+        </li>
+        <li>
+          <button class="nav-btn btn-highlight" id="btn-focus-form">
+            + Nueva Orden
+          </button>
+        </li>
+        <li>
+          <span class="badge-counter" id="contador-ordenes">0 Órdenes</span>
+        </li>
+      </ul>
     </nav>
 
     <main class="main-container">
-        
-        <aside class="form-panel">
-            <div class="form-card">
-                <h2><i class="fa-solid fa-clipboard-list"></i> Nueva Orden</h2>
-                <form id="form-orden">
-                    <div class="form-group">
-                        <label for="placa">Placa del Vehículo</label>
-                        <input type="text" id="placa" placeholder="Ej: ABC-123" maxlength="7" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="vehiculo_modelo">Vehículo y Modelo</label>
-                        <input type="text" id="vehiculo_modelo" placeholder="Ej: Mazda 3 2022" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="falla_reportada">Falla Reportada</label>
-                        <textarea id="falla_reportada" rows="4" placeholder="Describe el daño o mantenimiento..." required></textarea>
-                    </div>
-
-                    <button type="submit" class="btn-submit">
-                        <i class="fa-solid fa-paper-plane"></i> Registrar Orden
-                    </button>
-                </form>
+      <aside class="form-panel">
+        <div class="form-card">
+          <h2><i class="fa-solid fa-clipboard-list"></i> Nueva Orden</h2>
+          <form id="form-orden">
+            <div class="form-group">
+              <label for="placa">Placa del Vehículo</label>
+              <input
+                type="text"
+                id="placa"
+                placeholder="Ej: ABC-123"
+                maxlength="20"
+                required
+              />
             </div>
-        </aside>
 
-        <section class="cards-section">
-            <div class="section-header">
-                <h1 id="titulo-vista">Órdenes en Taller (Todas)</h1>
+            <div class="form-group">
+              <label for="vehiculo_modelo">Vehículo y Modelo</label>
+              <input
+                type="text"
+                id="vehiculo_modelo"
+                placeholder="Ej: Mazda 3 2022"
+                required
+              />
             </div>
-            
-            <div class="cards-grid" id="contenedor-tarjetas">
-            </div>
-        </section>
 
+            <div class="form-group">
+              <label for="falla_reportada">Falla Reportada</label>
+              <textarea
+                id="falla_reportada"
+                rows="4"
+                placeholder="Describe el daño o mantenimiento..."
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">
+              <i class="fa-solid fa-paper-plane"></i> Registrar Orden
+            </button>
+          </form>
+        </div>
+      </aside>
+
+      <section class="cards-section">
+        <div class="section-header">
+          <h1 id="titulo-vista">Órdenes en Taller (Todas)</h1>
+        </div>
+
+        <div class="cards-grid" id="contenedor-tarjetas"></div>
+      </section>
     </main>
 
     <footer class="footer">
-        <p>Desarrollo web Full-Stack | Caso #6: Taller Automotriz MotorTech - SENA CBA Mosquera</p>
+      <p>
+        Desarrollo web Full-Stack | Taller Automotriz MotorTech - SENA CBA
+        Mosquera
+      </p>
     </footer>
 
     <script src="app.js"></script>
-</body>
+  </body>
 </html>
