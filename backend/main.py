@@ -4,8 +4,12 @@ from bson.errors import InvalidId
 from fastapi import FastAPI, HTTPException, Query, status
 from fastapi.middleware.cors import CORSMiddleware
 
-from database import ordenes_collection
-from models import OrdenTallerCreate, OrdenTallerResponse, OrdenTallerUpdate
+try:
+    from .database import ordenes_collection
+    from .models import OrdenTallerCreate, OrdenTallerResponse, OrdenTallerUpdate
+except ImportError:
+    from database import ordenes_collection
+    from models import OrdenTallerCreate, OrdenTallerResponse, OrdenTallerUpdate
 
 app = FastAPI(
     title="MotorTech - API Taller Automotriz",

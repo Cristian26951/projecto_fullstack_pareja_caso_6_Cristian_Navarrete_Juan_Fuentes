@@ -11,14 +11,16 @@
 
     <nav class="navbar">
         <div class="nav-brand">
-            <i class="fa-solid fa-wrench"></i>
-            <span>Taller Automotriz <strong>MotorTech</strong> | ADSO 3409609</span>
+            <div class="logo-motortech" aria-label="Logo MotorTech">
+                <img src="Logo de Taller Automotriz MotorTech.png" alt="Logo Taller Automotriz MotorTech">
+            </div>
+            <span><strong>MotorTech</strong><small>Taller Automotriz</small></span>
         </div>
 
         <ul class="nav-links">
-            <li><button class="nav-btn active" data-filter="todos">Taller</button></li>
-            <li><button class="nav-btn" data-filter="reparacion">En Reparación</button></li>
-            <li><button class="nav-btn" data-filter="listos">Listos para Entrega</button></li>
+            <li><button type="button" class="nav-btn active" data-filter="todos">Taller</button></li>
+            <li><button type="button" class="nav-btn" data-filter="reparacion">En Reparación</button></li>
+            <li><button type="button" class="nav-btn" data-filter="listos">Listos para Entrega</button></li>
             <li><button class="nav-btn btn-highlight" id="btn-focus-form">+ Nueva Orden</button></li>
             <li>
                 <span class="badge-counter" id="contador-ordenes">0 Órdenes</span>
@@ -28,27 +30,36 @@
 
     <main class="main-container">
         
-        <aside class="form-panel">
+        <aside class="form-panel oculto" id="seccion-formulario" aria-hidden="true">
             <div class="form-card">
                 <h2><i class="fa-solid fa-clipboard-list"></i> Nueva Orden</h2>
                 <form id="form-orden">
                     <div class="form-group">
                         <label for="placa">Placa del Vehículo</label>
-                        <input type="text" id="placa" placeholder="Ej: ABC-123" maxlength="7" required>
+                        <input type="text" id="placa" placeholder="Ej: ABC-123" maxlength="7" required disabled>
                     </div>
 
                     <div class="form-group">
                         <label for="vehiculo_modelo">Vehículo y Modelo</label>
-                        <input type="text" id="vehiculo_modelo" placeholder="Ej: Mazda 3 2022" required>
+                        <input type="text" id="vehiculo_modelo" placeholder="Ej: Mazda 3 2022" required disabled>
                     </div>
 
                     <div class="form-group">
                         <label for="falla_reportada">Falla Reportada</label>
-                        <textarea id="falla_reportada" rows="4" placeholder="Describe el daño o mantenimiento..." required></textarea>
+                        <textarea id="falla_reportada" rows="4" placeholder="Describe el daño o mantenimiento..." required disabled></textarea>
                     </div>
 
-                    <button type="submit" class="btn-submit">
+                    <div class="form-group">
+                        <label for="imagen-url">URL de la imagen</label>
+                        <input type="url" id="imagen-url" placeholder="https://ejemplo.com/vehiculo.jpg" required disabled>
+                        <img id="vista-previa" class="vista-previa" alt="Vista previa del vehículo">
+                    </div>
+
+                    <button type="submit" class="btn-submit" disabled>
                         <i class="fa-solid fa-paper-plane"></i> Registrar Orden
+                    </button>
+                    <button type="button" class="btn-cancelar" id="btn-cancelar" disabled>
+                        Cancelar / Volver al Taller
                     </button>
                 </form>
             </div>
@@ -69,6 +80,7 @@
         <p>Desarrollo web Full-Stack | Caso #6: Taller Automotriz MotorTech - SENA CBA Mosquera</p>
     </footer>
 
+    <script src="config.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
