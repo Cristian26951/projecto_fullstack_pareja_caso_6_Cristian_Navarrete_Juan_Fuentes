@@ -52,10 +52,15 @@ class OrdenTallerBase(BaseModel):
         description="Estado de reparación",
     )
     imagen_url: str = Field(
+<<<<<<< HEAD
         default="https://via.placeholder.com/300x180?text=Vehiculo",
         min_length=10,
         description="URL pública de la imagen del vehículo",
         examples=["https://images.unsplash.com/photo-1493238792000-8113da705763"],
+=======
+        ...,
+        description="ponga su url sea serio"
+>>>>>>> 30122adaf5b8a3ba11b911f4ac20bfcff1fdc247
     )
 
 
@@ -72,7 +77,11 @@ class OrdenTallerUpdate(BaseModel):
     vehiculo_modelo: Optional[str] = Field(default=None, min_length=3, max_length=150)
     falla_reportada: Optional[str] = Field(default=None, min_length=3, max_length=500)
     reparado: Optional[bool] = None
+<<<<<<< HEAD
     imagen_url: Optional[str] = Field(default=None, min_length=10)
+=======
+    imagen_url: Optional[str] = Field(default=None, description="ponga su url sea serio")
+>>>>>>> 30122adaf5b8a3ba11b911f4ac20bfcff1fdc247
 
 
 class OrdenTallerResponse(OrdenTallerBase):

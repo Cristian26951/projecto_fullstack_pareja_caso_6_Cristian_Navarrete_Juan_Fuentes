@@ -3,6 +3,7 @@ from bson import ObjectId
 from bson.errors import InvalidId
 from fastapi import FastAPI, HTTPException, Query, status
 from fastapi.middleware.cors import CORSMiddleware
+from pymongo import ReturnDocument
 
 try:
     from .database import ordenes_collection
@@ -33,6 +34,11 @@ def _parse_object_id(orden_id: str) -> ObjectId:
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="ID de orden no válido",
         )
+
+
+@app.get("/")
+async def inicio():
+    return {"message": "API MotorTech funcionando"}
 
 
 @app.get("/ordenes", response_model=List[OrdenTallerResponse])
@@ -68,7 +74,7 @@ async def actualizar_orden(orden_id: str, datos: OrdenTallerUpdate):
     resultado = await ordenes_collection.find_one_and_update(
         {"_id": oid},
         {"$set": actualizacion},
-        return_document=True,
+        return_document=ReturnDocument.AFTER,
     )
     if not resultado:
         raise HTTPException(
