@@ -1,11 +1,7 @@
-<<<<<<< HEAD
 .env
+.env.*
+!.env.example
+venv/
+.venv/
 __pycache__/
 *.py[cod]
-.venv/
-venv/
-=======
-venv/
-__pycache__/
-.env
->>>>>>> 30122adaf5b8a3ba11b911f4ac20bfcff1fdc247
