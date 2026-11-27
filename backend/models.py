@@ -51,6 +51,10 @@ class OrdenTallerBase(BaseModel):
         default=False,
         description="Estado de reparación",
     )
+    imagen_url: str = Field(
+        ...,
+        description="ponga su url sea serio"
+    )
 
 
 class OrdenTallerCreate(OrdenTallerBase):
@@ -62,6 +66,7 @@ class OrdenTallerUpdate(BaseModel):
     vehiculo_modelo: Optional[str] = Field(default=None, min_length=3, max_length=150)
     falla_reportada: Optional[str] = Field(default=None, min_length=3, max_length=500)
     reparado: Optional[bool] = None
+    imagen_url: Optional[str] = Field(default=None, description="ponga su url sea serio")
 
 
 class OrdenTallerResponse(OrdenTallerBase):
