@@ -1,4 +1,5 @@
-const API_URL = "https://projecto-fullstack-pareja-caso-6-ir3k.onrender.com";
+const API_URL =
+  "https://projecto-fullstack-pareja-caso-6-ir3k.onrender.com/ordenes";
 
 let todasLasOrdenes = [];
 let filtroActual = "todos";
