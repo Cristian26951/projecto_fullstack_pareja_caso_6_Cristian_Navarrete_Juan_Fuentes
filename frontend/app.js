@@ -1,6 +1,6 @@
 const API_URL =
   window.MOTORTECH_API_URL ||
-  "https://projecto-fullstack-pareja-caso-6-ir3k.onrender.com/ordenes_servicios";
+  "https://projecto-fullstack-pareja-caso-6-ir3k.onrender.com/ordenes_servicio";
 
 let todasLasOrdenes = [];
 let filtroActual = "todos";

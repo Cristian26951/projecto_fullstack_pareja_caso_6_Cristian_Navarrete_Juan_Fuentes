@@ -6,10 +6,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from pymongo import ReturnDocument
 
 try:
-    from .database import ordenes_collection
+    from .database import ordenes_servicio_collection
     from .models import OrdenTallerCreate, OrdenTallerResponse, OrdenTallerUpdate
 except ImportError:
-    from database import ordenes_collection
+    from database import ordenes_servicio_collection
     from models import OrdenTallerCreate, OrdenTallerResponse, OrdenTallerUpdate
 
 app = FastAPI(
@@ -41,26 +41,26 @@ async def inicio():
     return {"message": "API MotorTech funcionando"}
 
 
-@app.get("/ordenes", response_model=List[OrdenTallerResponse])
+@app.get("/ordenes_servicio", response_model=List[OrdenTallerResponse])
 async def listar_ordenes(reparado: Optional[bool] = Query(default=None)):
     filtro = {} if reparado is None else {"reparado": reparado}
-    documentos = await ordenes_collection.find(filtro).to_list(length=1000)
+    documentos = await ordenes_servicio_collection.find(filtro).to_list(length=1000)
     return documentos
 
 
 @app.post(
-    "/ordenes",
+    "/ordenes_servicio",
     response_model=OrdenTallerResponse,
     status_code=status.HTTP_201_CREATED,
 )
 async def crear_orden(orden: OrdenTallerCreate):
     nueva_orden = orden.model_dump()
-    resultado = await ordenes_collection.insert_one(nueva_orden)
-    creada = await ordenes_collection.find_one({"_id": resultado.inserted_id})
+    resultado = await ordenes_servicio_collection.insert_one(nueva_orden)
+    creada = await ordenes_servicio_collection.find_one({"_id": resultado.inserted_id})
     return creada
 
 
-@app.put("/ordenes/{orden_id}", response_model=OrdenTallerResponse)
+@app.put("/ordenes_servicio/{orden_id}", response_model=OrdenTallerResponse)
 async def actualizar_orden(orden_id: str, datos: OrdenTallerUpdate):
     oid = _parse_object_id(orden_id)
     actualizacion = {k: v for k, v in datos.model_dump().items() if v is not None}
@@ -71,7 +71,7 @@ async def actualizar_orden(orden_id: str, datos: OrdenTallerUpdate):
             detail="No se enviaron campos para actualizar",
         )
 
-    resultado = await ordenes_collection.find_one_and_update(
+    resultado = await ordenes_servicio_collection.find_one_and_update(
         {"_id": oid},
         {"$set": actualizacion},
         return_document=ReturnDocument.AFTER,
@@ -84,10 +84,10 @@ async def actualizar_orden(orden_id: str, datos: OrdenTallerUpdate):
     return resultado
 
 
-@app.delete("/ordenes/{orden_id}", status_code=status.HTTP_204_NO_CONTENT)
+@app.delete("/ordenes_servicio/{orden_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def eliminar_orden(orden_id: str):
     oid = _parse_object_id(orden_id)
-    resultado = await ordenes_collection.delete_one({"_id": oid})
+    resultado = await ordenes_servicio_collection.delete_one({"_id": oid})
     if resultado.deleted_count == 0:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,

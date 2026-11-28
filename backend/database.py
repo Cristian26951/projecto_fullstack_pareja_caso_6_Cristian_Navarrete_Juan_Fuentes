@@ -10,4 +10,4 @@ COLLECTION_NAME = os.getenv("COLLECTION_NAME", "ordenes_servicio")
 
 client = AsyncIOMotorClient(MONGODB_URL)
 db = client[DATABASE_NAME]
-ordenes_collection = db[COLLECTION_NAME]
+ordenes_servicio_collection = db[COLLECTION_NAME]
